@@ -11,15 +11,15 @@ class account
 	int deposit;
 	char type;
 public:
-	void create_account();	
-	void show_account();	
-	void modify();   
-	void dep(int);	
-	void draw(int);	
-	void report();	
-	int retacno();
-	int retdeposit();	
-	char rettype();	
+	void create_account(); //member function to create a new account. 	
+	void show_account(); // member function to display the details of an already existing account.	
+	void modify(); // member function to modify the details of an account.  
+	void dep(int); // member func. to deposit an amount into an account.
+	void draw(int);	// member function to withdraw an amount from an account.
+	void report(); //member func. to dsiplay the details. 	
+	int retacno(); // returns acc. no.
+	int retdeposit(); // returns the amount deposited in an account.	
+	char rettype();	// returns the type of account (saving/current).
 };         
 
 void account::create_account()
@@ -226,7 +226,7 @@ void modify_account(int n)
 
 
 
-void delete_account(int n)
+void delete_account(int n) // deletes the account no. in the argument by replacing the already existing file with a temporary file which doesn't have the acc. no. (which is to be deleted).
 {
 	account ac;
 	ifstream inFile;
@@ -239,16 +239,16 @@ void delete_account(int n)
 	}
 	outFile.open("Temp.dat",ios::binary);
 	inFile.seekg(0,ios::beg);
-	while(inFile.read((char *) &ac, sizeof(account)))
+	while(inFile.read((char *) &ac, sizeof(account))) // reading the entries in the initial file.
 	{
 		if(ac.retacno()!=n)
 		{
-			outFile.write((char *) &ac, sizeof(account));
+			outFile.write((char *) &ac, sizeof(account)); // writing all the entries aside from the one to be deleted in the new file.
 		}
 	}
 	inFile.close();
 	outFile.close();
-	remove("account.dat");
+	remove("account.dat"); // deleting the record.
 	rename("Temp.dat","account.dat");
 	cout<<"\n\n\tRecord Deleted ..";
 }
