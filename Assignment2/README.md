@@ -8,7 +8,7 @@ MetaCoin implements a basic token which the accounts can give to each other with
 
 <h2>SafeMath implementation</h2>
 SafeMath library has been included in the code to work around limitations of solidity in dealing with floating point calculations and prevent Overflow of operators.
-Functions such as <code>add(x,y)</code> (Returns x+y, In case of overflow gives an error.)  <code>fullMul(x,y)</code> (Returns <code>x*y</code> as a 256 bit each (h,l) pair of integers and 
+Functions such as <code>add(x,y)</code> (<i>Returns x+y, In case of overflow gives an error.</i>)  <code>fullMul(x,y)</code> (<i>Returns <code>x*y</code> as a 256 bit each (h,l) pair of integers</i>) and 
 <code>mulDiv(x,y,z)</code> which returns <code>x*y/z</code> have been implemented.
 
 <h2>Implementation of various members of Loan Contract</h2><ol>
