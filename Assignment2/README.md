@@ -13,6 +13,7 @@ Functions such as <code>add(x,y)</code> (Returns x+y, In case of overflow gives 
 
 <h2>Implementation of various members of Loan Contract</h2><ol>
 Following are the said member functions:
+  
   <li> <code>modifier isOwner()</code>: Checks wether <code>msg.sender</code> is the <code>Owner</code> of the contract.</li><br>
   
   <li> <code>function getCompoundInterest(uint256 principle, uint rate, uint time)</code>: calculates and returns compound interest for the given parameters. It is a pure function as it  doesn't change the state variables.</li><br>
