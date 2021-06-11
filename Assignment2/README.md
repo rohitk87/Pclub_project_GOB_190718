@@ -1,5 +1,5 @@
 <h1>Loan Implementation in MetaCoin</h1>
-MetaCoin implements a basic token which the accounts can give to each other with the <code>sendCoin</code> function, and see their balance with the <code>getBalance</code> function. Here, we have made a smart contract extending the functionality of the MetaCoin to provide functionality of acting as a loan deposit and settling contract.
+MetaCoin implements a basic token which the accounts can give to each other with the <code>sendCoin</code> function, and see their balances with the <code>getBalance</code> function. Here, we have made a smart contract extending the use of MetaCoin to provide functionality of acting as a loan deposit and settling contract.
 
 <h2>Running the code</h2><ol>
 <li> Upload the Loan.sol file to Remix IDE and compile it.</li>
@@ -9,7 +9,7 @@ MetaCoin implements a basic token which the accounts can give to each other with
 <h2>SafeMath implementation</h2>
 SafeMath library has been included in the code to work around limitations of solidity in dealing with floating point calculations and prevent Overflow of operators.
 Functions such as <code>add(x,y)</code> (<i>Returns x+y, In case of overflow gives an error.</i>)  <code>fullMul(x,y)</code> (<i>Returns <code>x*y</code> as a 256 bit each (h,l) pair of integers</i>) and 
-<code>mulDiv(x,y,z)</code> which returns <code>x*y/z</code> have been implemented.
+<code>mulDiv(x,y,z)</code> which returns <code>x*y/z</code>, have been implemented.
 
 <h2>Implementation of various members of Loan Contract</h2><ol>
 Following are the said member functions:
