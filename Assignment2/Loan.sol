@@ -108,7 +108,7 @@ contract Loan is MetaCoin {
         
 	loans[msg.sender] += toPay;
         
-        if(loans[msg.sender < check]){
+        if(loans[msg.sender] < check){
         return false;}
         
         emit Request(msg.sender,principle,rate,time,toPay);
