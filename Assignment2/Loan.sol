@@ -103,27 +103,23 @@ contract Loan is MetaCoin {
     
     function getCompoundInterest(uint256 principle, uint rate, uint time) public pure returns(uint256) {
     		
-    		uint256 R = rate; uint256 T = time; uint256 P = principle;
+    	uint256 R = rate; uint256 T = time; uint256 P = principle;
     		
         for (uint i=1; i<=T;i++) {
-           P = SafeMath.add(P, SafeMath.mulDiv(P,R*10000000000000000,1000000000000000000));
+           P = SafeMath.add(P, SafeMath.mulDiv(P,R,1000000000000000000));
         }
         return P;
     }
     
     function reqLoan(uint256 principle, uint rate, uint time) public returns(bool) {
         
-        if(principle < 0 || rate < 0 || time <= 0){
-        return false;}
-        
         uint256 toPay = getCompoundInterest(principle, rate, time);
+        uint256 check = loans[msg.sender];
         
-        uint256 Amount = loans[msg.sender] + toPay;
+	loans[msg.sender] += toPay;
         
-        if(Amount < loans[msg.sender]){
+        if(loans[msg.sender < check]){
         return false;}
-        
-        loans[msg.sender] = Amount;
         
         emit Request(msg.sender,principle,rate,time,toPay);
         return true;
@@ -137,7 +133,7 @@ contract Loan is MetaCoin {
          return loans[creditor];
     }
     
-    function settleDues(address payable creditor) public isOwner payable returns (bool){
+    function settleDues(address creditor) public isOwner returns (bool){
         bool check = sendCoin(creditor,loans[creditor],Owner);
         if(check){
             loans[creditor] = 0;
