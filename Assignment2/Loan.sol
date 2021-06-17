@@ -86,8 +86,7 @@ contract Loan is MetaCoin {
        _;
     }
     
-    constructor() MetaCoin()
-    public{
+    constructor() MetaCoin() public{
         Owner = msg.sender;
     }
     
