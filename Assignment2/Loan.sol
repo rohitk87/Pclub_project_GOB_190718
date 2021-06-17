@@ -86,7 +86,7 @@ contract Loan is MetaCoin {
        _;
     }
     
-    constructor() MetaCoin() public{
+    constructor() public{
         Owner = msg.sender;
     }
     
@@ -116,12 +116,12 @@ contract Loan is MetaCoin {
         
     }
     function getOwnerBalance() public view returns(uint256) {
-		return getBalance(Owner);
-		}
+	return getBalance(Owner);
+	}
     
     function viewDues(address creditor) public isOwner view returns(uint256){
-         return loans[creditor];
-    }
+        return loans[creditor];
+    	}
     
     function settleDues(address creditor) public isOwner returns (bool){
         bool check = sendCoin(creditor,loans[creditor],Owner);
