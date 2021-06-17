@@ -96,7 +96,7 @@ contract Loan is MetaCoin {
     	uint256 R = rate; uint256 T = time; uint256 P = principle;
     		
         for (uint i=1; i<=T;i++) {
-           P = SafeMath.add(P, SafeMath.mulDiv(P,R,1000000000000000000));
+           P = SafeMath.add(P, SafeMath.mulDiv(P,R*10000000000000000,1000000000000000000));
         }
         return P;
     }
