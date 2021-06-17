@@ -8,31 +8,22 @@ pragma solidity >=0.4.25 <0.7.0;
 
 library SafeMath {
 
-    function add (
-        uint256 a,
-        uint256 b
-    ) internal pure returns(uint256) {
+    function add (uint256 a, uint256 b) internal pure returns(uint256) {
         uint256 c = a+b;
         assert(c>=a);
         return c;
     }
 
-    function fullMul (
-        uint256 a,
-        uint256 b
-    ) internal pure returns(uint256 h, uint256 l) {
+    function fullMul (uint256 a, uint256 b) internal pure returns(uint256 h, uint256 l){
         uint256 mm = mulmod(a, b, uint256(-1));
         l = a*b;
         h = (mm-l);
-        if(mm<l)    h -= 1;
+        if(mm<l)    
+		h -= 1;
         return (h, l);
     }
 
-    function mulDiv (
-        uint256 x,
-        uint256 y,
-        uint256 z
-    ) internal pure returns(uint256) {
+    function mulDiv (uint256 x, uint256 y, uint256 z) internal pure returns(uint256) {
         (uint256 h, uint256 l) = fullMul(x, y);
         require (h < z);  
         uint mm = mulmod (x, y, z);
@@ -91,7 +82,7 @@ contract Loan is MetaCoin {
     address private Owner;
     
     modifier isOwner() {
-       require(msg.sender == Owner, "Only owner can call");
+       require(msg.sender == Owner);
        _;
     }
     
@@ -111,7 +102,7 @@ contract Loan is MetaCoin {
         return P;
     }
     
-    function reqLoan(uint256 principle, uint rate, uint time) public returns(bool) {
+    function reqLoan(uint256 principle, uint rate, uint time) public returns(bool correct) {
         
         uint256 toPay = getCompoundInterest(principle, rate, time);
         uint256 check = loans[msg.sender];
